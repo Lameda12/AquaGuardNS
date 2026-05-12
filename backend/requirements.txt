@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+httpx
+numpy
+scipy
+matplotlib
+marineHeatWaves @ git+https://github.com/ecjoliver/marineHeatWaves
+loguru
+python-dateutil
