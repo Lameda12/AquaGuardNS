@@ -1,7 +1,7 @@
 [project]
 name = "backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "Marine Heatwave Early Warning System backend for Nova Scotia aquaculture"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -18,6 +18,9 @@ dependencies = [
 
 [tool.uv.sources]
 marineheatwaves = { git = "https://github.com/ecjoliver/marineHeatWaves" }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
 
 [dependency-groups]
 dev = [
