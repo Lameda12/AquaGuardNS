@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+backend/.venv/
+
+# Cache — auto-generated at runtime, don't commit
+backend/cache/*.json
+backend/cache/*.tmp
+
+# Node
+frontend/node_modules/
+frontend/.next/
+
+# OS
+.DS_Store
+backend/.DS_Store
+
+# uv
+backend/.python-version
