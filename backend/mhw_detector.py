@@ -94,7 +94,6 @@ async def detect_mhw_for_site(site_id: str) -> dict:
     mhw_duration_days = 0
     if mhws["n_events"] > 0:
         last_end = mhws["date_end"][-1]
-        last_start = mhws["date_start"][-1]
         if last_end >= date_objs[-1]:
             mhw_active = True
             mhw_duration_days = int(mhws["duration"][-1])

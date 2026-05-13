@@ -10,7 +10,7 @@ dependencies = [
     "loguru>=0.7.3",
     "marineheatwaves",
     "matplotlib>=3.10.9",
-    "numpy>=2.4.4",
+    "numpy>=1.23,<2.0",
     "python-dateutil>=2.9.0.post0",
     "scipy>=1.17.1",
     "uvicorn[standard]>=0.46.0",
