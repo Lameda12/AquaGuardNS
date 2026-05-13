@@ -36,6 +36,13 @@ def load_cached_sst(site_id: str) -> list[dict] | None:
 
 
 async def fetch_erddap_sst(site_id: str, days_back: int = 90) -> list[dict]:
+    # Fix 3: Validate site_id before SITES lookup
+    if site_id not in SITES:
+        raise ValueError(f"Unknown site: {site_id!r}")
+
+    # Fix 1: Create cache dir before any HTTP call
+    CACHE_DIR.mkdir(exist_ok=True)
+
     site = SITES[site_id]
     lat, lon = site["lat"], site["lon"]
     end = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0, microsecond=0)
@@ -63,11 +70,13 @@ async def fetch_erddap_sst(site_id: str, days_back: int = 90) -> list[dict]:
         date_str = time_str[:10]
         data.append({"date": date_str, "sst": float(sst)})
 
-    CACHE_DIR.mkdir(exist_ok=True)
-    _cache_path(site_id).write_text(json.dumps({
+    # Fix 2: Atomic cache write using tmp file + rename
+    tmp = _cache_path(site_id).with_suffix(".tmp")
+    tmp.write_text(json.dumps({
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "data": data,
     }))
+    tmp.rename(_cache_path(site_id))
     logger.info(f"Cached {len(data)} SST records for {site_id}")
     return data
 

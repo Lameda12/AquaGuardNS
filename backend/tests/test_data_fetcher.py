@@ -2,7 +2,7 @@ import json
 import pytest
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import AsyncMock, patch, MagicMock
+from unittest.mock import patch
 
 from data_fetcher import load_cached_sst, get_sst
 
