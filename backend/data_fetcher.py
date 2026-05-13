@@ -82,7 +82,7 @@ async def fetch_erddap_sst(site_id: str, days_back: int = 90) -> list[dict]:
 
 
 def _load_fallback_csv(site_id: str) -> list[dict]:
-    path = DATA_DIR / f"{site_id}_fallback.csv"
+    path = DATA_DIR / f"{site_id}_sst_fallback.csv"
     if not path.exists():
         raise FileNotFoundError(f"No fallback CSV for {site_id} at {path}")
     data = []
